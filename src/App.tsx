@@ -1,24 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ShowList from './components/ShowList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ExpenseTracker from './components/ExpenseTracker';
 
 function App() {
+  const success = () =>{
+    return false
+  }
+  const cancel = () =>{
+    return false
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<ShowList></ShowList>}></Route>
+          <Route path='/add' element={<ExpenseTracker onTrue={success} onClose={cancel}></ExpenseTracker>}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
